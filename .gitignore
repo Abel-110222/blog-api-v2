@@ -1,0 +1,7 @@
+## HEAVY FOLDERS
+node_modules
+
+
+## ENV VARIABLES
+
+.env
