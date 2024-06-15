@@ -5,16 +5,22 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/post.js';
 import commentRoutes from './routes/comments.js';
-
+import cors from 'cors'; // Importa el paquete cors
 
 const app = express();
 
-app.use(bodyParser.json());
+// Configura bodyParser para procesar las solicitudes con cuerpo en formato JSON
+app.use(bodyParser.json({ limit: '50mb' })); // You can adjust the limit as needed
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+// Configura CORS para permitir solicitudes desde cualquier origen (*)
+app.use(cors());
+
 
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
-app.use('/posts', commentRoutes);
+app.use('/comments', commentRoutes);
 
 sequelize.sync()
   .then(() => {

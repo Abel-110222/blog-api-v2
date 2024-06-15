@@ -24,7 +24,7 @@ const Post = sequelize.define('Post', {
     allowNull: false
   },
   image_url: {
-    type: DataTypes.STRING
+    type: DataTypes.TEXT,
   },
   createdAt: {
     type: DataTypes.DATE,
