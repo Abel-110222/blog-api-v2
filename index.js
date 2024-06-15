@@ -22,11 +22,18 @@ app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/comments', commentRoutes);
 
+app.get('/', (_req, res) => {
+  res.json({
+    message: `Welcome to the Blog QUEMADOS MID see our docs at ${API_URL}/api/docs`,
+    endponts: ApiEndpoints.map(endpoint => `${API_URL}${endpoint}`)
+  })
+})
+
 sequelize.sync()
   .then(() => {
-    app.listen(3000, () => {
-      console.log('Server is running on port 3000');
-    });
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is running on  ${process.env.API_URL}:${process.env.PORT}`)
+    })
   })
   .catch(error => {
     console.error('Unable to connect to the database:', error);
